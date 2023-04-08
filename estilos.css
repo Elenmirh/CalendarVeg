@@ -1,0 +1,178 @@
+*{
+    border:0; 
+    padding:0;
+    margin:0;
+}
+
+#cabecera{
+    position: absolute;
+    width: 100vw;
+    top: 1.5vh; 
+    left: 2.4vw;
+    height: 19vh;
+    z-index: 60;
+}
+
+#pseudoback {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 103vh;
+    opacity: 1;
+    z-index: 10;
+    overflow: hidden;
+    scrollbar-width: none;        
+}
+
+#pseudoback:-webkit-scrollbar{
+    display: none;
+}
+
+#buscar{
+    background-color: pink;
+    z-index: 80;
+    position: absolute; 
+    left: 2vw;
+    top: 50vh;
+    width: 12vw;
+    height: 9vh;
+    font-family: 'Lakki Reddy', regular;
+    font-size: 92px;
+    font-weight: bolder;
+}
+
+#id_input{
+    position: absolute;
+    top: 0vh;
+    width: 12vw;
+    height: 9vh;
+    z-index: 90;
+    font-family: 'Lakki Reddy', regular;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+#minicalendar {
+    position: absolute;
+    /*background-color: green;*/
+    z-index: 20;
+    left: 4vw;
+    top: 22.3vh;
+    width: 9vw;
+    height: 18vh;
+}
+
+.scrollbar{
+    position: absolute;
+    z-index: 100;
+    top: 22.3vh;
+    width: 4.0vw;
+    height: 73vh;
+    opacity: 0;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-repeat: no-repeat;
+    background-size: 100vw;
+    height: 100vh;
+    scrollbar-width: none;  
+}
+
+
+body:-webkit-scrollbar {
+    display:none;
+}
+
+.listado {
+    font-family: 'Lakki Reddy', regular;
+    font-size: 92px;
+    font-weight: bolder;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 34.5vw;
+    height: 73vh;
+    /*background-color: blue;*/
+    position: absolute;
+    top: 22.3vh;
+    left: 15vw;
+    opacity: 1;
+    z-index: 15;
+    scrollbar-width: none;  
+}
+
+
+.listado::-webkit-scrollbar{
+    display:none;
+}
+
+.rounded {
+    border-radius: 1vw;
+    background-color: white;
+    left: 1vw;
+    top: 6vh;
+    height: 35vh;
+    width: 32vw;
+    position: absolute;
+    opacity: 1;
+}
+
+.nombrevegetal{
+    font-family: 'Lakki Reddy', regular;
+    font-size: 3vw;
+    position: absolute;
+    left: 1vw;
+    top: -0.7vh;
+    z-index: 21;
+}
+
+.foto1{
+    position: absolute;
+    left: .2vw;
+    top: 6vh;
+    height: 27vh;
+    width: 13.9vw; 
+    z-index: 20;
+    padding: 4px;
+    background-color: black;
+}
+
+.sello{
+    left: .4vw;
+    top: 7vh;
+    position:relative;
+    z-index: 30;
+}
+
+.grafico{
+    position: absolute;
+    left: 14vw;
+    top: 6vh;
+    height: 27vh;
+    width: 5vw;
+    z-index: 20;
+    padding-left: 2px;
+    margin-left: 0px;
+    background-color: black;
+}
+
+.foto2{
+    position: absolute;
+    left: 17.85vw;
+    top: 6vh;
+    height: 27vh;
+    width: 13.9vw;
+    z-index: 20;
+    padding: 4px;
+    background-color: black;
+}
+
+.baston{
+    background-color: #411717;
+    position: absolute;
+    height: 1vh;
+    width: 100.1vw;
+    z-index: 25;
+}

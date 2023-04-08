@@ -4,71 +4,283 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lakki+Reddy&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="birds.css">
+
     <title>CalendarVeg</title>
 </head>
-<body>
- Calendario de vegetales de temporada
- 
- <script>
-    //let Vegetales={};
-    const ENERO = 1;
-    const FEBRERO =2;
-    const MARZO = 3;
-    const ABRIL = 4;
-    const MAYO = 5;
-    const JUNIO = 6;
-    const JULIO = 7;
-    const AGOSTO = 8;
-    const SEPTIEMBRE = 9;
-    const OCTUBRE = 10;
-    const NOVIEMBRE = 11;
-    const DICIEMBRE = 12;
 
-    const Vegetales = [];
+<body onload="start();">
 
-    let dia = new Date();
- 
-    Vegetales.push ({
-            nombre:"Melocotón",
-            tipo:"fruta",
-            initem: "3",
-            fintem: "5",
-            pretem: "2",
-            postem: "6"
-        }
-    );
+  <div class="container" style="position: absolute; z-index: 15; height:100%; width:100.1%;">	    
+        
+    <div class="bird-container bird-container--one" style="position: absolute; z-index: 110;">
+        <div class="bird bird--one"></div>
+    </div>
 
-    Vegetales.push ({
-            nombre:"Manzana",
-            tipo:"fruta",
-            initem: "2",
-            fintem: "3",
-            pretem: "1",
-            postem: "4"
-        }
-    );
+    <div class="bird-container bird-container--two">
+        <div class="bird bird--two"></div>
+    </div>
     
-    Vegetales.push ({
-            nombre:"Remolacha",
-            tipo:"verdura",
-            initem: "6",
-            fintem: "8",
-            pretem: "5",
-            postem: "9"
+    <div class="bird-container bird-container--three">
+        <div class="bird bird--three"></div>
+    </div>
+    
+    <div class="bird-container bird-container--four">
+        <div class="bird bird--four"></div>
+    </div>
+    
+</div>
+
+
+<div id="pseudoback">
+    <object id="svgid" data="svg_ids.svg" height="100%" width="100.1%"></object>
+</div>
+
+
+<div id="cabecera" onmousedown="AlterFullScreen();">
+        <img src="img/cabecera.svg" width="95%" height="100%"/>
+</div>
+
+<div class="baston" style="top: 21.3vh;"></div>
+<div class="baston" style="top: 95.27vh;"></div>
+
+<div id="listver" class="listado"></div>
+
+<!--
+<div class="scrollbar" style="background-color: #FF0084; left:49.5vw">
+    <input type="range">
+</div>
+-->
+
+<div id="listfru" class="listado" style="left: 55vw;"></div>
+
+<!--
+<div class="scrollbar" style="background-color: #FFFF00; left: 89.5vw">
+    <object id="scroll_2" data="scroll_BAR+THUMB.svg" width="100%" height="100%"></object>
+</div>
+-->
+
+<audio id="primavera" src="music/primavera.mp3"></audio>
+<audio id="verano" src="music/verano.mp3"></audio>
+<audio id="otono" src="music/otono.mp3"></audio>
+<audio id="invierno" src="music/invierno.mp3"></audio>
+
+<div id="buscar"><input id="id_input" type="text" onkeyup="Search(this.value);" placeholder="Buscar..."></input></div>
+
+<div id="minicalendar" onmouseout="Resetmonth()" onmouseleave="Resetmonth()">
+
+    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+        <defs>
+        <style>.cls-1{fill:#ffc42a;}
+                .cls-2{fill:#fff;}
+                .cls-3{fill:#a2c23d;}
+                .cls-4{fill:#3b939d;}            
+                .cls-5{font: bold 4px sans-serif;}
+                .cls-6{fill:darkgreen;}
+        </style>
+        </defs>
+        <title>Calendario</title>        
+       
+        <path class="cls-1" onmouseenter="Resetmonth()" onmouseout="Resetmonth()" onmouseleave="Resetmonth()" d="M5.87,3.16v4S5.79,9,8.17,8.91c0,0,2.56.18,2.54-1.72v-4H21.5V7s-.1,2.09,2.59,2c0,0,2.22,0,2.25-1.44V3.16h3.5A1.87,1.87,0,0,1,31.5,5v24.4s0,1.86-1.61,1.86H2.32S.5,31.25.5,29.53V4.93S.69,3.16,2.28,3.16Z"/>
+        <rect class="cls-2" pointer-events="none" x="2.42" y="11.12" width="27.18" height="18.12"/>
+
+        
+        <rect id="ENE" class="cls-3" x="5.15" y="13.56" width="4.03" height="3.66" onmouseenter="Showmonth(1)" onmouseout="Hidemonth(1)" onclick="Calc(1)" cursor="pointer"/>
+        <rect id="FEB" class="cls-3" x="10.95" y="13.56" width="4.03" height="3.66" onmouseenter="Showmonth(2)" onmouseout="Hidemonth(2)" onclick="Calc(2)" cursor="pointer"/>
+        <rect id="MAR" class="cls-3" x="16.75" y="13.56" width="4.03" height="3.66" onmouseenter="Showmonth(3)" onmouseout="Hidemonth(3)" onclick="Calc(3)" cursor="pointer"/>
+        <rect id="ABR" class="cls-3" x="22.59" y="13.56" width="4.03" height="3.66" onmouseenter="Showmonth(4)" onmouseout="Hidemonth(4)" onclick="Calc(4)" cursor="pointer"/>
+        <rect id="MAY" class="cls-3" x="5.15" y="18.62" width="4.03" height="3.66" onmouseenter="Showmonth(5)" onmouseout="Hidemonth(5)" onclick="Calc(5)" cursor="pointer"/>
+        <rect id="JUN" class="cls-3" x="10.95" y="18.62" width="4.03" height="3.66" onmouseenter="Showmonth(6)" onmouseout="Hidemonth(6)" onclick="Calc(6)" cursor="pointer"/>
+        <rect id="JUL" class="cls-3" x="16.75" y="18.62" width="4.03" height="3.66" onmouseenter="Showmonth(7)" onmouseout="Hidemonth(7)" onclick="Calc(7)" cursor="pointer"/>
+        <rect id="AGO" class="cls-3" x="22.59" y="18.62" width="4.03" height="3.66" onmouseenter="Showmonth(8)" onmouseout="Hidemonth(8)" onclick="Calc(8)" cursor="pointer"/>
+        <rect id="SEP" class="cls-3" x="5.15" y="23.69" width="4.03" height="3.66" onmouseenter="Showmonth(9)" onmouseout="Hidemonth(9)" onclick="Calc(9)" cursor="pointer"/>
+        <rect id="OCT" class="cls-3" x="10.95" y="23.69" width="4.03" height="3.66" onmouseenter="Showmonth(10)" onmouseout="Hidemonth(10)" onclick="Calc(10)" cursor="pointer"/>
+        <rect id="NOV" class="cls-3" x="16.75" y="23.69" width="4.03" height="3.66" onmouseenter="Showmonth(11)" onmouseout="Hidemonth(11)" onclick="Calc(11)" cursor="pointer"/>
+        <rect id="DIC" class="cls-3" x="22.59" y="23.69" width="4.03" height="3.66" onmouseenter="Showmonth(12)" onmouseout="Hidemonth(12)" onclick="Calc(12)" cursor="pointer"/>           
+
+        <rect class="cls-4" x="6.83" y="0.71" width="2.88" height="7.25" rx="1.44"/>
+        <rect class="cls-4" x="22.46" y="0.71" width="2.88" height="7.25" rx="1.44"/>
+
+        <text id="nombremes" x="11.6" y="10" class="cls-5">ENE</text>
+    </svg>
+    
+</div>
+
+<script src="funciones.js"></script>
+
+<script type="text/javascript">
+    function AlterFullScreen() {
+      if ((document.fullScreenElement && document.fullScreenElement !== null) ||    // metodo alternativo
+          (!document.mozFullScreen && !document.webkitIsFullScreen)) {               // metodos actuales
+        if (document.documentElement.requestFullScreen) {
+          document.documentElement.requestFullScreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullScreen) {
+          document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
         }
-    );
-
-    Vegetales.push ({
-            nombre:"Lechuga",
-            tipo:"verdura",
-            initem: "9",
-            fintem: "11",
-            pretem: "8",
-            postem: "12"
+      } else {
+        if (document.cancelFullScreen) {
+          document.cancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+          document.webkitCancelFullScreen();
         }
-    );
+      }
+    }
+    </script>
 
+ <script>
+let colors=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
- </script>
+//primavera
+    let tone_1 =[[0,0,0],
+                [5, 35, 1],
+                [17, 59, 6],         
+                [25, 60, 12],
+                [39, 81, 27],
+                [53, 107, 38],
+                [60, 120, 45],
+                [80, 140, 65],
+                [100, 160, 95],
+                [120, 175, 105],
+                [147, 189, 135],
+                [160, 200, 155],
+                [173, 215, 161],
+                [193, 235, 181],
+                [205, 255, 191],
+                [255,255,255]];
+
+//verano
+    let tone_2 = [[0,0,0],
+                  [36, 18, 22],
+                  [45, 32, 28],         
+                  [65, 52, 29],
+                  [85, 72, 30],
+                  [105, 92, 31],
+                  [125, 112, 32],
+                  [145, 132, 33],
+                  [160, 148, 36],
+                  [171, 159, 73],
+                  [191, 179, 93],
+                  [211, 199, 113],
+                  [218, 211, 138],
+                  [232, 227, 172],
+                  [252, 247, 192],
+                  [255,255,255]];
+
+//otoño
+    let tone_3 =[[0,0,0],
+                [30, 9, 4],
+                [51, 18, 1],         
+                [120, 27, 25],
+                [150, 37, 10],
+                [170, 47, 5],
+                [190, 67, 25],
+                [231, 93, 4],
+                [251, 113, 24],
+                [252, 135, 60],
+                [205, 175, 77],
+                [255, 197, 8],
+                [253, 212, 78],
+                [255, 208, 134],
+                [255, 238, 164],
+                [255,255,255]];     
+  
+//invierno
+    let tone_4 =[[0,0,0],
+                [10, 9, 26],
+                [20, 29, 36],         
+                [40, 49, 56],
+                [45, 69, 86],
+                [50, 89, 100],
+                [70, 115, 120],
+                [90, 135, 140],
+                [109, 156, 165],
+                [115, 165, 181],
+                [130, 178, 191],
+                [150, 216, 205],
+                [171, 225, 216],
+                [182, 232, 224],
+                [219, 240, 236],
+                [255,255,255]];    
+
+let tones=[];
+tones.push(tone_1);
+tones.push(tone_2);
+tones.push(tone_3);
+tones.push(tone_4);
+
+    let season=1;
+
+    let index_anim=0;
+    let index_path=1;
+    let newcolor="";
+    let currentcolor="";
+
+    function CalculeGray(rd,gd,bd){
+        return Math.round(((0.299 * rd) + (0.587 * gd) + (0.114 * bd))/17);
+    }
+
+    function animation(){
+      let opacity=(index_path/139);
+      //console.log("opa: ",opacity);
+      document.getElementById("listver").style.opacity=opacity;
+      document.getElementById("listfru").style.opacity=opacity;
+        //console.log("entra en animación:",index_path);
+        animation2();
+        //console.log("sale de animación:",index_path);
+    }
+
+let Changecolor=0;
+
+let anim_sello=0;
+let colection=[];
+
+function AnimSello() {
+  if (anim_sello%5){
+    colection=document.getElementsByClassName("sello");
+    for (let iter=0; iter<colection.length; iter++){
+      console.log("Col:",colection[iter]);
+      colection[iter].style.opacity=1;
+    }    
+  }
+  else {
+    colection=document.getElementsByClassName("sello");
+    for (let iter=0; iter<colection.length; iter++){
+      console.log("Col:",colection[iter]);
+      colection[iter].style.opacity=0;
+    } 
+  }
+  anim_sello++;
+}
+
+</script>
+
+<script src="vegetales.js"> </script>
+
 </body>
 </html>
